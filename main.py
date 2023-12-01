@@ -2,6 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 import datetime
+from pprint import pprint
 
 load_dotenv()
 
@@ -28,9 +29,18 @@ utc_date = datetime.datetime(year=2023, month=11, day=29, tzinfo=datetime.timezo
 # print(int(utc_date))
 
 start_date = datetime.date.today()
+start_date_time = datetime.datetime(start_date.year, start_date.month, start_date.day)
+end_date_time = start_date_time - datetime.timedelta(days=1)
+date_tuple = tuple((start_date, start_date_time.timestamp(), end_date_time.timestamp()))
+date_list = []
 for count in range(7):
     start_date = start_date - datetime.timedelta(days=1)
-    print(start_date)
+    start_date_time = start_date_time - datetime.timedelta(days=1)
+    end_date_time = start_date_time - datetime.timedelta(days=1)
+    date_tuple = tuple((start_date, start_date_time.timestamp(), end_date_time.timestamp()))
+    date_list.append(date_tuple)
+pprint(date_list)
+
 
 
 
