@@ -2,9 +2,8 @@ import requests
 import os
 from dotenv import load_dotenv
 import datetime
-from pprint import pprint
 import plotly.express as px
-import pandas
+import pandas as pd
 
 load_dotenv()
 
@@ -38,19 +37,8 @@ for count in range(7):
     date_tuple = tuple((start_date, item_count))
     date_list.append(date_tuple)
     start_date = start_date - datetime.timedelta(days=1)
-pprint(date_list)
 
-
-
-
-
-
-# data = {
-#     'День': date_list,
-#     'Количество': result["count"]
-# }
-#
-# fig = px.bar(data, x='День', y='Количество', title='График упоминаний Кока-Кола ВКонтакте')
-# fig.show()
-
+seven_days_statistics = pd.DataFrame(date_list, columns=['День', 'Количество'])
+fig = px.bar(seven_days_statistics, x='День', y='Количество', title='Количество упоминаний Кока-Кола ВК за 7 дней')
+fig.show()
 
