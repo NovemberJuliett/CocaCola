@@ -7,10 +7,6 @@ import pandas as pd
 
 load_dotenv()
 
-today = datetime.date.today()
-yesterday = today - datetime.timedelta(days=1)
-utc_date = datetime.datetime(year=2023, month=11, day=29, tzinfo=datetime.timezone.utc).timestamp()
-
 start_date = datetime.date.today()
 start_date_time = datetime.datetime(start_date.year, start_date.month, start_date.day)
 end_date_time = start_date_time - datetime.timedelta(days=1)
