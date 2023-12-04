@@ -16,7 +16,7 @@ def main():
     date_list = []
 
     parser = argparse.ArgumentParser(description="Put here the number of days")
-    parser.add_argument("--number_of_days", type=int)
+    parser.add_argument("--number_of_days", type=int, required=True)
     args = parser.parse_args()
 
     for day in range(args.number_of_days):

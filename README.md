@@ -1,13 +1,12 @@
-# Mentions VK
+# VK Mentions 
 
-This script helps to receive statistics by some word or words mention in social network VKontakte (for example how often
-people talk about Coca-Cola. 
-You can choose the period for what you need the statistics.
+This script extracts VKontakte statistics for specified keywords, enabling you to monitor discussions.
+You can customize the time period for analysis.
 
 ## How to install
 
 Python3 should be already installed. 
-Then use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
+Use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
 ```
 pip install -r requirements.txt
 ```
@@ -24,8 +23,8 @@ SERVICE_KEY ="put_your_key_here"
 ```
 ## Run
 
-Open a new terminal window and run the script:
+Open a new terminal window and run the script with a desirable number of days. For example:
 
 ```python
-python3 main.py
+python main.py --number_of_days 8
 ```
