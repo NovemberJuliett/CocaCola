@@ -12,11 +12,9 @@ def main():
 
     start_date = datetime.date.today()
     start_date_time = datetime.datetime(start_date.year, start_date.month, start_date.day)
-    end_date_time = start_date_time - datetime.timedelta(days=1)
-    date_tuple = tuple((start_date, start_date_time, end_date_time))
     date_list = []
 
-    for count in range(7):
+    for day in range(7):
         start_date_time = start_date_time - datetime.timedelta(days=1)
         end_date_time = start_date_time - datetime.timedelta(days=1)
         params = {
@@ -28,10 +26,10 @@ def main():
         }
         response = requests.get("https://api.vk.com/method/newsfeed.search", params=params)
         response.raise_for_status()
-        result = response.json()
-        values = result.values()
-        for value in values:
-            item_count = value["count"]
+        all_mentions = response.json()
+        mentions_content = all_mentions.values()
+        for item in mentions_content:
+            item_count = item["count"]
         date_tuple = tuple((start_date, item_count))
         date_list.append(date_tuple)
         start_date = start_date - datetime.timedelta(days=1)
