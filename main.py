@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import datetime
 import plotly.express as px
 import pandas as pd
+import argparse
 
 
 def main():
@@ -14,7 +15,11 @@ def main():
     start_date_time = datetime.datetime(start_date.year, start_date.month, start_date.day)
     date_list = []
 
-    for day in range(7):
+    parser = argparse.ArgumentParser(description="Put here the number of days")
+    parser.add_argument("--number_of_days", type=int)
+    args = parser.parse_args()
+
+    for day in range(args.number_of_days):
         start_date_time = start_date_time - datetime.timedelta(days=1)
         end_date_time = start_date_time - datetime.timedelta(days=1)
         params = {
@@ -35,7 +40,8 @@ def main():
         start_date = start_date - datetime.timedelta(days=1)
 
     seven_days_statistics = pd.DataFrame(date_list, columns=['День', 'Количество'])
-    fig = px.bar(seven_days_statistics, x='День', y='Количество', title='Количество упоминаний Кока-Кола ВК за 7 дней')
+    fig = px.bar(seven_days_statistics, x='День', y='Количество',
+                 title='Количество упоминаний Кока-Кола ВК за {} дней'.format(args.number_of_days))
     fig.show()
 
 
